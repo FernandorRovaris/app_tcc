@@ -11,11 +11,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Doar-se",
-      themeMode: ThemeMode.system,
-      home: LoginViewer(),
+      theme: ThemeData(
+        primaryColor: const Color.fromARGB(217, 217, 217, 1000),
+      ),
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginViewer(),
+        '/caduser': (context) => const CadUserViewer(),
+      },
     );
   }
 }

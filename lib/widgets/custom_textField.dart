@@ -5,37 +5,42 @@ class CustomTextField extends StatelessWidget {
   final IconData prefixIcon;
   final bool obscureText;
   final TextInputType keyboardType;
+  final EdgeInsetsGeometry padding;
 
   const CustomTextField({
     super.key,
     required this.labelText,
     required this.prefixIcon,
     required this.keyboardType,
+    required this.padding,
     this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: const Color.fromARGB(202, 199, 199, 1000),
-        labelStyle: const TextStyle(color: Colors.black),
-        labelText: labelText,
-        prefixIcon: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 10),
-          child: Icon(
-            prefixIcon,
-            color: Colors.black,
-            size: 30,
+    return Padding(
+      padding: padding,
+      child: TextField(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: const Color.fromARGB(202, 199, 199, 1000),
+          labelStyle: const TextStyle(color: Colors.black),
+          labelText: labelText,
+          prefixIcon: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 10),
+            child: Icon(
+              prefixIcon,
+              color: Colors.black,
+              size: 30,
+            ),
           ),
+          border: defBorder(),
+          focusedBorder: defBorder(),
         ),
-        border: defBorder(),
-        focusedBorder: defBorder(),
+        style: const TextStyle(fontSize: 25),
+        keyboardType: keyboardType,
+        obscureText: obscureText,
       ),
-      style: const TextStyle(fontSize: 25),
-      keyboardType: keyboardType,
-      obscureText: obscureText,
     );
   }
 

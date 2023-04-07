@@ -39,22 +39,18 @@ class LoginViewer extends StatelessWidget {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              const Padding(
+              const CustomTextField(
                 padding: EdgeInsets.all(20),
-                child: CustomTextField(
-                  labelText: "Email",
-                  prefixIcon: Icons.email_outlined,
-                  keyboardType: TextInputType.emailAddress,
-                ),
+                labelText: "Email",
+                prefixIcon: Icons.email_outlined,
+                keyboardType: TextInputType.emailAddress,
               ),
-              const Padding(
+              const CustomTextField(
                 padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: CustomTextField(
-                  labelText: "Senha",
-                  prefixIcon: Icons.lock_person_outlined,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                ),
+                labelText: "Senha",
+                prefixIcon: Icons.lock_person_outlined,
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true,
               ),
               Container(
                 padding: const EdgeInsets.only(left: 45, top: 3),
@@ -84,7 +80,7 @@ class LoginViewer extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    log("clik");
+                    Navigator.of(context).pushNamed("/caduser");
                   },
                   child: const Text(
                     "Entrar",
