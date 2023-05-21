@@ -1,46 +1,56 @@
 class UserModel {
   int? id;
-  String? name;
+  String? nome;
+  String? sobreNome;
   String? email;
   String? senha;
-  String? dateRegister;
-  String? numberCel;
+  String? celular;
+  bool? isInstituicao;
 
   UserModel(
       {this.id,
-      this.name,
+      this.nome,
+      this.sobreNome,
       this.email,
       this.senha,
-      this.dateRegister,
-      this.numberCel});
+      this.celular,
+      this.isInstituicao});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
+    nome = json['nome'];
+    sobreNome = json['sobrenome'];
     email = json['email'];
     senha = json['senha'];
-    dateRegister = json['date_register'];
-    numberCel = json['number_cel'];
+    celular = json['celular'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['name'] = name;
+    data['nome'] = nome;
+    data['sobrenome'] = sobreNome;
     data['email'] = email;
     data['senha'] = senha;
-    data['date_register'] = dateRegister;
-    data['number_cel'] = numberCel;
+    data['celular'] = celular;
     return data;
   }
 
   @override
   String toString() {
     return "id = $id"
-        "Name = $name"
+        "Nome = $nome"
         "email = $email"
         "senha = $senha"
-        "date_register = $dateRegister"
-        "number_cel = $numberCel";
+        "celular = $celular";
+  }
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+        id: map['id'] ?? '',
+        nome: map['nome'] ?? '',
+        sobreNome: map['sobrenome'] ?? '',
+        email: map['email'] ?? '',
+        celular: map['celular'] ?? '');
   }
 }

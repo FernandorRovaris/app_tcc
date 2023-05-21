@@ -6,7 +6,7 @@ class DioApiService implements DioServece {
   Dio getDio() {
     return Dio(
       BaseOptions(
-        baseUrl: "http://127.0.0.1:3000",
+        baseUrl: "https://doarseapi.onrender.com",
         headers: {'context-type': 'application/json; charset=utf-8'},
       ),
     );
