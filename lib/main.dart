@@ -1,4 +1,5 @@
 import 'package:app_tcc/views/cad_user_viewer.dart';
+import 'package:app_tcc/views/home_page.dart';
 import 'package:app_tcc/views/login_viewer.dart';
 import 'package:flutter/material.dart';
 
@@ -17,10 +18,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color.fromARGB(217, 217, 217, 1000),
       ),
-      initialRoute: '/login',
+      initialRoute: '/home',
       routes: {
         '/login': (context) => const LoginViewer(),
         '/caduser': (context) => const CadUserViewer(),
+        '/home': (context) => const HomePage(),
       },
     );
   }

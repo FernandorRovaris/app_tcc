@@ -45,6 +45,7 @@ dependencies:
   phosphor_flutter: ^2.0.0
   camera_camera: ^3.0.0-dev
   get: ^4.6.5
+  convex_bottom_bar: ^3.2.0
 
 
 dev_dependencies:
