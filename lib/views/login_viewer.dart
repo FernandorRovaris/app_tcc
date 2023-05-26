@@ -181,10 +181,11 @@ class _LoginViewerState extends State<LoginViewer> {
         });
 
         userModel = await controller.authUser(
-            emailController.text.trim(), senhaController.text.trim());
+            emailController.text.trim().toLowerCase(),
+            senhaController.text.trim());
 
         if (mounted) {
-          messageAlert("Sucesso user ${userModel!.nome}", context);
+          Navigator.pushReplacementNamed(context, '/home');
         }
       } on ApiExeption catch (e) {
         messageAlert(e.message, context);

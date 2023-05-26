@@ -24,7 +24,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
 
   bool modeInsert = false;
 
-  String? gender;
+  String? gender = "T";
 
   final imagePicker = ImagePicker();
   File? imageFile;
@@ -283,7 +283,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
                             ),
                           )
                         : const Text(
-                            "Concluir",
+                            "Continuar",
                             style: TextStyle(
                               fontSize: 25,
                               color: Colors.black,
@@ -308,7 +308,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
 
       userModel.nome = nomeController.text.trim();
       userModel.sobreNome = sobreNomeController.text.trim();
-      userModel.email = emailController.text.trim();
+      userModel.email = emailController.text.trim().toLowerCase();
       userModel.celular = celularController.text.trim();
       userModel.senha = senhaController.text.trim();
       userModel.isInstituicao = gender == "F";
@@ -317,7 +317,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
        *  
       */
       try {
-        setState(() {
+        /*setState(() {
           modeInsert = true;
         });
 
@@ -326,7 +326,10 @@ class _CadUserViewerState extends State<CadUserViewer> {
         if (mounted) {
           messageAlert(
               "Usuario ${userModel!.nome} cadastrado com Sucesso", context);
-        }
+          Navigator.pushReplacementNamed(context, '/home');
+        }*/
+
+        Navigator.of(context).pushNamed("/endereco", arguments: userModel);
       } on ApiExeption catch (e) {
         messageAlert(e.message, context);
       } finally {

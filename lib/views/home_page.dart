@@ -1,9 +1,11 @@
 import 'dart:io';
 
-import 'package:app_tcc/Utils/utils.dart';
 import 'package:app_tcc/controllers/user_controller.dart';
 import 'package:app_tcc/repositories/user_repository.dart';
 import 'package:app_tcc/service/dio_api_service.dart';
+import 'package:app_tcc/views/new_camp_viewer.dart';
+import 'package:app_tcc/views/perfil_viewer.dart';
+import 'package:app_tcc/views/time_line_viewer.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +48,7 @@ class _HomePageState extends State<HomePage>
         actions: [
           IconButton(
               onPressed: () {
-                exit(0);
+                Navigator.pushReplacementNamed(context, '/login');
               },
               icon: const Icon(
                 Icons.exit_to_app,
@@ -60,103 +62,12 @@ class _HomePageState extends State<HomePage>
         ),
         controller: _tabController,
         children: [
-          ListView(
-            children: [
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Aqui",
-                  style: TextStyle(fontSize: 80),
-                ),
-              )
-            ],
-          ),
-          Container(
-            color: Colors.red,
-          ),
+          const TimeLineHome(),
+          const NewCampaign(),
           Container(
             color: Colors.black,
           ),
-          Container(
-            color: Colors.white,
-          )
+          const Perfil()
         ],
       ),
       bottomNavigationBar: ConvexAppBar(
