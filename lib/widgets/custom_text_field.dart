@@ -51,7 +51,7 @@ class CustomTextField extends StatelessWidget {
           border: defBorder(),
           focusedBorder: defBorder(),
         ),
-        style: const TextStyle(fontSize: 25),
+        style: const TextStyle(fontSize: 20),
         keyboardType: keyboardType,
         obscureText: obscureText,
       ),

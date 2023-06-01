@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:app_tcc/controllers/user_controller.dart';
 import 'package:app_tcc/repositories/user_repository.dart';
 import 'package:app_tcc/service/dio_api_service.dart';

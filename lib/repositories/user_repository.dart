@@ -9,7 +9,7 @@ class UserRepository {
   Future<UserModel> getUserId(int id) async {
     var result = await _dioApiService.getDio().get("/users/$id");
 
-    return UserModel.fromJson(result.data);
+    return UserModel.fromMap(result.data);
   }
 
   Future<UserModel?> saveUser(UserModel userModel) async {
@@ -19,7 +19,7 @@ class UserRepository {
         );
 
     if (result.statusCode == 200) {
-      return UserModel.fromJson(result.data!);
+      return UserModel.fromMap(result.data!);
     } else {
       return null;
     }
@@ -32,7 +32,7 @@ class UserRepository {
     );
 
     if (result.statusCode == 200) {
-      return UserModel.fromJson(result.data!);
+      return UserModel.fromMap(result.data!);
     } else {
       return null;
     }

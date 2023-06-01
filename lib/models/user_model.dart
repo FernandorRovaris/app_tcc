@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 class UserModel {
   int? id;
   String? nome;
@@ -5,6 +8,13 @@ class UserModel {
   String? email;
   String? senha;
   String? celular;
+  int? estadoId;
+  int? cidadeId;
+  String? cep;
+  String? numero;
+  String? endereco;
+  String? fileImage;
+  File? image;
   bool? isInstituicao;
 
   UserModel(
@@ -14,16 +24,14 @@ class UserModel {
       this.email,
       this.senha,
       this.celular,
+      this.estadoId,
+      this.cidadeId,
+      this.cep,
+      this.endereco,
+      this.numero,
+      this.fileImage,
+      this.image,
       this.isInstituicao});
-
-  UserModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    nome = json['nome'];
-    sobreNome = json['sobrenome'];
-    email = json['email'];
-    senha = json['senha'];
-    celular = json['celular'];
-  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -33,6 +41,13 @@ class UserModel {
     data['email'] = email;
     data['senha'] = senha;
     data['celular'] = celular;
+    data['estadoId'] = estadoId;
+    data['cidadeId'] = cidadeId;
+    data['cep'] = cep;
+    data['numero'] = numero;
+    data['endereco'] = endereco;
+    data['isInstituicao'] = isInstituicao;
+    data['fileImage'] = fileImage;
     return data;
   }
 
@@ -46,11 +61,21 @@ class UserModel {
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
+    File image = File.fromRawPath(
+        Uint8List.fromList(map['fileImage']['data'].cast<int>()));
+
     return UserModel(
         id: map['id'] ?? '',
         nome: map['nome'] ?? '',
         sobreNome: map['sobrenome'] ?? '',
         email: map['email'] ?? '',
-        celular: map['celular'] ?? '');
+        celular: map['celular'] ?? '',
+        estadoId: map['estadoId'],
+        cidadeId: map['cidadeId'],
+        cep: map['cep'] ?? '',
+        numero: map['numero'] ?? '',
+        endereco: map['endereco'] ?? '',
+        isInstituicao: map['isInstituicao'] ?? '',
+        image: image);
   }
 }

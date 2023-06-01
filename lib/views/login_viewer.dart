@@ -138,26 +138,29 @@ class _LoginViewerState extends State<LoginViewer> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Ainda não possue conta?",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w600),
-                      ),
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.of(context).pushNamed("/caduser"),
-                        child: const Text(
-                          "Cadastre-se",
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Ainda não possue conta?",
                           style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600,
+                              fontSize: 25, fontWeight: FontWeight.w600),
+                        ),
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.of(context).pushNamed("/caduser"),
+                          child: const Text(
+                            "Cadastre-se",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -170,7 +173,7 @@ class _LoginViewerState extends State<LoginViewer> {
 
   Future<void> auth() async {
     if (_formKey.currentState!.validate()) {
-      UserModel? userModel = UserModel();
+      UserModel? userModel;
 
       UserController controller =
           UserController(UserRepository(DioApiService()));
@@ -185,7 +188,8 @@ class _LoginViewerState extends State<LoginViewer> {
             senhaController.text.trim());
 
         if (mounted) {
-          Navigator.pushReplacementNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/home',
+              arguments: userModel);
         }
       } on ApiExeption catch (e) {
         messageAlert(e.message, context);

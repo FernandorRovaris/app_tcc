@@ -32,7 +32,8 @@ class UserController {
 
   Future<UserModel?> authUser(String email, String senha) async {
     try {
-      return await _userRepository.authUser(email, senha);
+      UserModel? userModel = await _userRepository.authUser(email, senha);
+      return userModel;
     } on DioError catch (e) {
       if (e.type == DioErrorType.badResponse) {
         throw ApiExeption(message: e.response!.data["message"]);

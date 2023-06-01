@@ -107,10 +107,10 @@ class TimeLineHome extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           "DOAR-SE",
                           style: TextStyle(
-                            fontSize: 28,
+                            fontSize: 25,
                             color: Colors.black,
                           ),
                         ),

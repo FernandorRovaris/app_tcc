@@ -1,8 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class NewCampaign extends StatefulWidget {
@@ -44,7 +42,7 @@ class _NewCampaign extends State<NewCampaign> {
                     Text(
                       "Movel",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -60,7 +58,7 @@ class _NewCampaign extends State<NewCampaign> {
                     Text(
                       "Alimento",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -76,7 +74,7 @@ class _NewCampaign extends State<NewCampaign> {
                     Text(
                       "Eletro Eletronicos",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
@@ -93,7 +91,7 @@ class _NewCampaign extends State<NewCampaign> {
                     Text(
                       "Saúde",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -109,7 +107,7 @@ class _NewCampaign extends State<NewCampaign> {
                     Text(
                       "Brinquedos",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -125,7 +123,7 @@ class _NewCampaign extends State<NewCampaign> {
                     Text(
                       "Vestuarios & Calçados",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
@@ -142,7 +140,7 @@ class _NewCampaign extends State<NewCampaign> {
                     Text(
                       "Educação",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -159,7 +157,7 @@ class _NewCampaign extends State<NewCampaign> {
                       Text(
                         "Outros",
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
