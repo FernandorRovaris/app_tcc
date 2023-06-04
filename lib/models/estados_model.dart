@@ -16,7 +16,7 @@ class EstadoModel {
   EstadoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'] ?? '';
     nome = json['nome'] ?? '';
-    cidades = json["cidades"] ?? '';
+    cidades = json["cidades"];
   }
 
   Map<String, dynamic> toJson() {

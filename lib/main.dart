@@ -1,3 +1,4 @@
+import 'package:app_tcc/views/cad_campanhas.dart';
 import 'package:app_tcc/views/cad_user_viewer.dart';
 import 'package:app_tcc/views/home_page.dart';
 import 'package:app_tcc/views/login_viewer.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginViewer(),
         '/caduser': (context) => const CadUserViewer(),
         '/home': (context) => const HomePage(),
+        '/cadCamp': (context) => const CadCampanhas(),
       },
     );
   }

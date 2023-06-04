@@ -1,4 +1,5 @@
 import 'package:app_tcc/controllers/user_controller.dart';
+import 'package:app_tcc/models/user_model.dart';
 import 'package:app_tcc/repositories/user_repository.dart';
 import 'package:app_tcc/service/dio_api_service.dart';
 import 'package:app_tcc/views/new_camp_viewer.dart';
@@ -38,6 +39,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    UserModel userModel =
+        ModalRoute.of(context)!.settings.arguments as UserModel;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home", style: TextStyle(color: Colors.black)),
@@ -61,11 +64,15 @@ class _HomePageState extends State<HomePage>
         controller: _tabController,
         children: [
           const TimeLineHome(),
-          const NewCampaign(),
+          NewCampaign(
+            userModel: userModel,
+          ),
           Container(
             color: Colors.black,
           ),
-          const Perfil()
+          Perfil(
+            userModel: userModel,
+          )
         ],
       ),
       bottomNavigationBar: ConvexAppBar(

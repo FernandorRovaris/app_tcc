@@ -1,5 +1,7 @@
-import 'dart:io';
+import 'dart:convert';
 import 'dart:typed_data';
+
+import 'package:flutter/material.dart';
 
 class UserModel {
   int? id;
@@ -14,7 +16,7 @@ class UserModel {
   String? numero;
   String? endereco;
   String? fileImage;
-  File? image;
+  MemoryImage? image;
   bool? isInstituicao;
 
   UserModel(
@@ -61,9 +63,11 @@ class UserModel {
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
-    File image = File.fromRawPath(
-        Uint8List.fromList(map['fileImage']['data'].cast<int>()));
+    late List<int>? imageBytes = List.empty();
 
+    if (map["fileImage"] != null) {
+      imageBytes = base64Decode(map["fileImage"]);
+    }
     return UserModel(
         id: map['id'] ?? '',
         nome: map['nome'] ?? '',
@@ -76,6 +80,11 @@ class UserModel {
         numero: map['numero'] ?? '',
         endereco: map['endereco'] ?? '',
         isInstituicao: map['isInstituicao'] ?? '',
-        image: image);
+        image: imageBytes.isNotEmpty
+            ? MemoryImage(
+                Uint8List.fromList(imageBytes),
+                scale: 0.5,
+              )
+            : null);
   }
 }

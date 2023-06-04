@@ -10,6 +10,8 @@ class CustomTextField extends StatelessWidget {
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final bool enabled;
+  final String? initialValue;
+  final int? maxLines;
 
   const CustomTextField({
     super.key,
@@ -22,6 +24,8 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.enabled = true,
+    this.initialValue,
+    this.maxLines = 1,
   });
 
   @override
@@ -30,6 +34,8 @@ class CustomTextField extends StatelessWidget {
       padding: padding,
       child: TextFormField(
         enabled: enabled,
+        maxLines: maxLines,
+        initialValue: initialValue,
         validator: validator,
         controller: controller,
         onChanged: onChanged,
@@ -61,7 +67,7 @@ class CustomTextField extends StatelessWidget {
   OutlineInputBorder defBorder() {
     return const OutlineInputBorder(
       borderRadius: BorderRadius.all(
-        Radius.circular(30),
+        Radius.circular(20),
       ),
       borderSide: BorderSide(
         style: BorderStyle.solid,

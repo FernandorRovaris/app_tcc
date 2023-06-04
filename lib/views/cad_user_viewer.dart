@@ -52,9 +52,9 @@ class _CadUserViewerState extends State<CadUserViewer> {
   Future<List<EstadoModel>?> _getEstados() async {
     EstadoController controller =
         EstadoController(EstadoRepository(DioApiService()));
-
-    estados = await controller.getAll();
-
+    if (estados!.isEmpty) {
+      estados = await controller.getAll();
+    }
     return estados;
   }
 
@@ -78,13 +78,15 @@ class _CadUserViewerState extends State<CadUserViewer> {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
               case ConnectionState.none:
-                return Container(
-                  width: 200,
-                  height: 200,
-                  alignment: Alignment.center,
-                  child: const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(Colors.white),
-                    strokeWidth: 5,
+                return Center(
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    alignment: Alignment.center,
+                    child: const CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Colors.white),
+                      strokeWidth: 5,
+                    ),
                   ),
                 );
 
@@ -126,7 +128,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
                   child: Stack(
                     children: [
                       CircleAvatar(
-                        radius: 75,
+                        radius: 100,
                         backgroundColor: Theme.of(context).primaryColor,
                         child: imageFile == null
                             ? const Icon(
@@ -135,7 +137,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
                                 color: Colors.black,
                               )
                             : CircleAvatar(
-                                radius: 65,
+                                radius: 100,
                                 backgroundColor: Colors.grey[300],
                                 backgroundImage: imageFile != null
                                     ? FileImage(imageFile!)
@@ -217,7 +219,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
                 padding: const EdgeInsets.only(top: 15),
                 labelText: "Celular",
                 prefixIcon: Icons.phone,
-                keyboardType: TextInputType.name,
+                keyboardType: TextInputType.phone,
                 validator: ((value) {
                   if (value == null || value.isEmpty) {
                     return "Insira seu Celular";
@@ -231,7 +233,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
                 padding: const EdgeInsets.only(top: 15),
                 labelText: "Email",
                 prefixIcon: Icons.email,
-                keyboardType: TextInputType.name,
+                keyboardType: TextInputType.emailAddress,
                 validator: ((value) {
                   if (value == null || value.isEmpty) {
                     return "Insira seu Email";
@@ -371,7 +373,7 @@ class _CadUserViewerState extends State<CadUserViewer> {
                 prefixIcon: Icons.home_outlined,
                 padding: const EdgeInsets.only(top: 15),
                 labelText: "Endereço",
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.name,
                 validator: ((value) {
                   if (value == null || value.isEmpty) {
                     return "Insira seu Cep";
@@ -539,11 +541,12 @@ class _CadUserViewerState extends State<CadUserViewer> {
 
         userModel = await controller.saveUser(userModel);
 
-        if (mounted) {
+        if (context.mounted) {
           messageAlert(
               "Usuario ${userModel!.nome} cadastrado com Sucesso", context);
-          Navigator.pushReplacementNamed(context, '/home',
-              arguments: userModel);
+
+          Navigator.of(context)
+              .pushReplacementNamed('/home', arguments: userModel);
         }
       } on ApiExeption catch (e) {
         messageAlert(e.message, context);
