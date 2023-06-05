@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:app_tcc/Utils/utils.dart';
 import 'package:app_tcc/controllers/campanha_controller.dart';
 import 'package:app_tcc/custom_exeption/api_exeption.dart';
 import 'package:app_tcc/models/campanhas_model.dart';
+import 'package:app_tcc/models/fotos_model.dart';
 import 'package:app_tcc/models/user_model.dart';
 import 'package:app_tcc/repositories/campanha_repository.dart';
 import 'package:app_tcc/service/dio_api_service.dart';
@@ -27,6 +29,8 @@ class _CadCampanhasState extends State<CadCampanhas> {
   TextEditingController itemDescController = TextEditingController();
   TextEditingController itemMedaController = TextEditingController();
   TextEditingController descricaoController = TextEditingController();
+
+  int _currentIndex = 0;
 
   bool _isColeta = false;
   bool modeInsert = false;
@@ -84,6 +88,9 @@ class _CadCampanhasState extends State<CadCampanhas> {
                               options: CarouselOptions(
                                 viewportFraction: 1.5,
                                 enlargeCenterPage: false,
+                                onPageChanged: (index, reason) {
+                                  _currentIndex = index;
+                                },
                               ),
                             ),
                           ),
@@ -124,7 +131,7 @@ class _CadCampanhasState extends State<CadCampanhas> {
                                     },
                                     () {
                                       Navigator.of(context).pop();
-
+                                      _images.removeAt(_currentIndex);
                                       setState(() {});
                                     },
                                   );
@@ -315,6 +322,7 @@ class _CadCampanhasState extends State<CadCampanhas> {
   Future<void> save(int usersId) async {
     if (_formKey.currentState!.validate()) {
       CampanhaModel? campanhaModel = CampanhaModel();
+      FotosModel? fotos = FotosModel();
 
       CampanhaController controller =
           CampanhaController(CampanhaRepository(DioApiService()));
@@ -328,6 +336,10 @@ class _CadCampanhasState extends State<CadCampanhas> {
       campanhaModel.titulo = tituloController.text.trim();
       campanhaModel.isColeta = _isColeta;
 
+      List<String> imagens = _images.map((e) {
+        return base64Encode(e.readAsBytesSync());
+      }).toList();
+
       try {
         setState(() {
           modeInsert = true;
@@ -335,9 +347,14 @@ class _CadCampanhasState extends State<CadCampanhas> {
 
         campanhaModel = await controller.save(campanhaModel);
 
+        fotos.campanhasId = campanhaModel!.id;
+        fotos.listFotos = imagens;
+
+        await controller.saveFotos(fotos);
+
         if (context.mounted) {
           messageAlert(
-              "Campanha ${campanhaModel!.titulo} cadastrado com Sucesso",
+              "Campanha ${campanhaModel.titulo} cadastrado com Sucesso",
               context);
 /*
           Navigator.of(context)
