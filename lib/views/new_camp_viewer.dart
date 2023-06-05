@@ -23,10 +23,12 @@ class _NewCampaign extends State<NewCampaign> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.red,
-        ),
+      body: ListView(
+        children: const [
+          ListTile(
+            title: Text("aqui"),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,

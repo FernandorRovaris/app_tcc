@@ -40,4 +40,18 @@ class CampanhaController {
       throw Exception("Erro Inesperado");
     }
   }
+
+  Future<List<CampanhaModel>?> getAll() async {
+    try {
+      return await _campanhaRepository.getAll();
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.badResponse) {
+        throw ApiExeption(message: e.response!.data["message"]);
+      } else {
+        throw Exception("Erro Inesperado");
+      }
+    } catch (e) {
+      throw Exception("Erro Inesperado");
+    }
+  }
 }

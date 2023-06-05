@@ -2,11 +2,13 @@ class FotosModel {
   int? id;
   int? campanhasId;
   List<String>? listFotos;
+  String? foto;
 
   FotosModel({
     this.id,
     this.campanhasId,
     this.listFotos,
+    this.foto,
   });
 
   Map<String, dynamic> toJson() {
@@ -21,6 +23,7 @@ class FotosModel {
       id: map['id'] ?? '',
       campanhasId: map['campanhaId'] ?? '',
       listFotos: map['fotos'],
+      foto: map['foto'],
     );
   }
 }

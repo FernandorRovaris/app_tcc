@@ -25,4 +25,16 @@ class CampanhaRepository {
           data: fotos.toJson(),
         );
   }
+
+  Future<List<CampanhaModel>?> getAll() async {
+    var result = await _dioApiService.getDio().get("/campanha");
+
+    if (result.statusCode == 200) {
+      return result.data!.map<CampanhaModel>((campanha) {
+        return CampanhaModel.fromMap(campanha);
+      }).toList();
+    } else {
+      return null;
+    }
+  }
 }
