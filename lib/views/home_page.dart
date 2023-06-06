@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -67,9 +67,6 @@ class _HomePageState extends State<HomePage>
           NewCampaign(
             userModel: userModel,
           ),
-          Container(
-            color: Colors.black,
-          ),
           Perfil(
             userModel: userModel,
           )
@@ -82,7 +79,6 @@ class _HomePageState extends State<HomePage>
         items: const [
           TabItem(icon: Icons.home),
           TabItem(icon: Icons.add),
-          TabItem(icon: Icons.search),
           TabItem(icon: Icons.person),
         ],
       ),

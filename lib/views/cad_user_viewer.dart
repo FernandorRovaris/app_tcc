@@ -549,7 +549,9 @@ class _CadUserViewerState extends State<CadUserViewer> {
               .pushReplacementNamed('/home', arguments: userModel);
         }
       } on ApiExeption catch (e) {
-        messageAlert(e.message, context);
+        if (context.mounted) {
+          messageAlert(e.message, context);
+        }
       } finally {
         setState(() {
           modeInsert = false;

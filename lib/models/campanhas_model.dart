@@ -1,4 +1,5 @@
 import 'package:app_tcc/models/fotos_model.dart';
+import 'package:app_tcc/models/user_model.dart';
 
 class CampanhaModel {
   int? id;
@@ -10,18 +11,19 @@ class CampanhaModel {
   String? descricao;
   bool? isColeta;
   List<FotosModel>? fotos;
+  UserModel? user;
 
-  CampanhaModel({
-    this.id,
-    this.usersId,
-    this.titulo,
-    this.categoria,
-    this.itemDesc,
-    this.itemMeta,
-    this.descricao,
-    this.isColeta,
-    this.fotos,
-  });
+  CampanhaModel(
+      {this.id,
+      this.usersId,
+      this.titulo,
+      this.categoria,
+      this.itemDesc,
+      this.itemMeta,
+      this.descricao,
+      this.isColeta,
+      this.fotos,
+      this.user});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -48,6 +50,19 @@ class CampanhaModel {
       itemMeta: map['item_meta'] ?? '',
       descricao: map['descricao'] ?? '',
       isColeta: map['is_coleta'],
+      user: UserModel(
+        id: map['user']['id'],
+        nome: map['user']['nome'] ?? '',
+        sobreNome: map['user']['sobrenome'] ?? '',
+        email: map['user']['email'] ?? '',
+        celular: map['user']['celular'] ?? '',
+        estadoId: map['user']['estadoId'],
+        cidadeId: map['user']['cidadeId'],
+        cep: map['user']['cep'] ?? '',
+        numero: map['user']['numero'] ?? '',
+        endereco: map['user']['endereco'] ?? '',
+        isInstituicao: map['user']['isInstituicao'] ?? '',
+      ),
       fotos: map["listFotos"].map<FotosModel>((obj) {
         return FotosModel(
           id: obj['id'],

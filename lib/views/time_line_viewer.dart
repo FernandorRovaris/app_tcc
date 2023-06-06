@@ -4,6 +4,7 @@ import 'package:app_tcc/controllers/campanha_controller.dart';
 import 'package:app_tcc/models/campanhas_model.dart';
 import 'package:app_tcc/repositories/campanha_repository.dart';
 import 'package:app_tcc/service/dio_api_service.dart';
+import 'package:app_tcc/views/doarse_viewer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class _TimeLineHomeState extends State<TimeLineHome> {
     CampanhaController controller =
         CampanhaController(CampanhaRepository(DioApiService()));
 
-    return await controller.getAll();
+    return await controller.getAll(null);
   }
 
   @override
@@ -72,17 +73,18 @@ class _TimeLineHomeState extends State<TimeLineHome> {
           ),
           child: Column(
             children: [
-              const Row(
+              Row(
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: CircleAvatar(
                       child: Icon(Icons.person),
                     ),
                   ),
                   Text(
-                    "Nome user",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    campanhas.user.nome,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -106,29 +108,27 @@ class _TimeLineHomeState extends State<TimeLineHome> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Container(
-                        child: Column(
-                          children: [
-                            const Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Text(
-                                    "Campanha",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500),
-                                  ),
+                      child: Column(
+                        children: [
+                          const Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 15),
+                                child: Text(
+                                  "Campanha",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                              ],
-                            ),
-                            Text(
-                              campanhas.titulo,
-                              style: TextStyle(fontSize: 50),
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            campanhas.titulo,
+                            style: const TextStyle(fontSize: 50),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -153,7 +153,15 @@ class _TimeLineHomeState extends State<TimeLineHome> {
                             width: 2,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => DorseViewer(
+                                campanhaModel: campanhas,
+                              ),
+                            ),
+                          );
+                        },
                         child: const Text(
                           "DOAR-SE",
                           style: TextStyle(

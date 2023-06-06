@@ -41,9 +41,9 @@ class CampanhaController {
     }
   }
 
-  Future<List<CampanhaModel>?> getAll() async {
+  Future<List<CampanhaModel>?> getAll(int? userId) async {
     try {
-      return await _campanhaRepository.getAll();
+      return await _campanhaRepository.getAll(userId);
     } on DioError catch (e) {
       if (e.type == DioErrorType.badResponse) {
         throw ApiExeption(message: e.response!.data["message"]);

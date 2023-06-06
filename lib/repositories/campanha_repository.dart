@@ -26,8 +26,10 @@ class CampanhaRepository {
         );
   }
 
-  Future<List<CampanhaModel>?> getAll() async {
-    var result = await _dioApiService.getDio().get("/campanha");
+  Future<List<CampanhaModel>?> getAll(int? userId) async {
+    var result = await _dioApiService
+        .getDio()
+        .get("/campanha", queryParameters: {'userId': userId});
 
     if (result.statusCode == 200) {
       return result.data!.map<CampanhaModel>((campanha) {

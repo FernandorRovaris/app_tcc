@@ -356,9 +356,8 @@ class _CadCampanhasState extends State<CadCampanhas> {
           messageAlert(
               "Campanha ${campanhaModel.titulo} cadastrado com Sucesso",
               context);
-/*
-          Navigator.of(context)
-              .pushReplacementNamed('/home', arguments: userModel);*/
+
+          Navigator.of(context).pop();
         }
       } on ApiExeption catch (e) {
         messageAlert(e.message, context);
