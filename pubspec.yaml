@@ -48,6 +48,7 @@ dependencies:
   convex_bottom_bar: ^3.2.0
   carousel_slider: ^4.2.1
   flutter_slidable: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
 
 
 dev_dependencies:

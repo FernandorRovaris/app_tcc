@@ -50,19 +50,21 @@ class CampanhaModel {
       itemMeta: map['item_meta'] ?? '',
       descricao: map['descricao'] ?? '',
       isColeta: map['is_coleta'],
-      user: UserModel(
-        id: map['user']['id'],
-        nome: map['user']['nome'] ?? '',
-        sobreNome: map['user']['sobrenome'] ?? '',
-        email: map['user']['email'] ?? '',
-        celular: map['user']['celular'] ?? '',
-        estadoId: map['user']['estadoId'],
-        cidadeId: map['user']['cidadeId'],
-        cep: map['user']['cep'] ?? '',
-        numero: map['user']['numero'] ?? '',
-        endereco: map['user']['endereco'] ?? '',
-        isInstituicao: map['user']['isInstituicao'] ?? '',
-      ),
+      user: map['user'] != null
+          ? UserModel(
+              id: map['user']['id'],
+              nome: map['user']['nome'] ?? '',
+              sobreNome: map['user']['sobrenome'] ?? '',
+              email: map['user']['email'] ?? '',
+              celular: map['user']['celular'] ?? '',
+              estadoId: map['user']['estadoId'],
+              cidadeId: map['user']['cidadeId'],
+              cep: map['user']['cep'] ?? '',
+              numero: map['user']['numero'] ?? '',
+              endereco: map['user']['endereco'] ?? '',
+              isInstituicao: map['user']['isInstituicao'] ?? '',
+            )
+          : null,
       fotos: map["listFotos"].map<FotosModel>((obj) {
         return FotosModel(
           id: obj['id'],
